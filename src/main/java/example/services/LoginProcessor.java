@@ -8,13 +8,17 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class LoginProcessor {
     private final LoggedUserManagementService loggedUserManagementService;
-    public LoginProcessor(LoggedUserManagementService loggedUserManagementService) {
+    private final LoginCountService loginCountService;
+    public LoginProcessor(LoggedUserManagementService loggedUserManagementService,
+                          LoginCountService loginCountService) {
+        this.loginCountService = loginCountService;
         this.loggedUserManagementService = loggedUserManagementService;
     }
     private String name;
     private String password;
 
     public boolean login() {
+        loginCountService.increment();
         if("Sanzhar".equals(name) && "password".equals(password)) {
             loggedUserManagementService.setName(name);
             return true;

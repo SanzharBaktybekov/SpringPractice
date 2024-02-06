@@ -1,6 +1,7 @@
 package example.controllers;
 
 import example.services.LoggedUserManagementService;
+import example.services.LoginCountService;
 import org.apache.commons.logging.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/main")
 public class MainController {
     private final LoggedUserManagementService loggedUserManagementService;
-    public MainController(LoggedUserManagementService loggedUserManagementService) {
+    private final LoginCountService loginCountService;
+    public MainController(LoggedUserManagementService loggedUserManagementService,
+                          LoginCountService loginCountService) {
+        this.loginCountService = loginCountService;
         this.loggedUserManagementService = loggedUserManagementService;
     }
     @GetMapping
@@ -23,6 +27,7 @@ public class MainController {
         }
         String username = loggedUserManagementService.getName();
         page.addAttribute("name", username);
+        page.addAttribute("loginCount", loginCountService.getCount());
         if(username == null) {
             return "redirect:/";
         }
