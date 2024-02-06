@@ -17,18 +17,11 @@ public class ProductController {
     }
 
     @PostMapping
-    public String addProduct(@RequestParam String name,
-                             @RequestParam Double price,
-                             @RequestParam Double id,
-                           Model page) {
-        Product product = new Product();
-        product.setName(name);
-        product.setId(id);
-        product.setPrice(price);
-        service.addProduct(product);
+    public String addProduct(Product p, Model page) {
+        service.addProduct(p);
 
-        List<Product> list = service.findAll();
-        page.addAttribute("products", list);
+        var products = service.findAll();
+        page.addAttribute("products", products);
         return "products.html";
     }
     @GetMapping
