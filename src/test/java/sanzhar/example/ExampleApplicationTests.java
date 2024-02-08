@@ -1,13 +1,9 @@
 package sanzhar.example;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import example.config.AppConfig;
 
-@SpringBootTest
-class ExampleApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
+@SpringBootTest(classes = AppConfig.class)
+public class ExampleApplicationTests {
 
 }
