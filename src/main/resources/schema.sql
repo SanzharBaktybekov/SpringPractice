@@ -1,5 +1,5 @@
-CREATE TABLE purchase (
-id SERIAL PRIMARY KEY,
-product VARCHAR(50) NOT NULL,
-price DOUBLE PRECISION NOT NULL
+create table account (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    amount DOUBLE NOT NULL
 );
